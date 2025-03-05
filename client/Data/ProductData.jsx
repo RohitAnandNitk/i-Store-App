@@ -1,0 +1,38 @@
+export const ProductData =[
+    {
+        _id : 1,
+        name : 'iPhone 16e',
+        description : 'iPhone 16e 128 GB: Built for Apple Intelligence, A18 Chip, Supersized Battery Life, 48MP Fusion. Camera, 15.40 cm (6.1″) Super Retina XDR Display; White',
+        price : 58999,
+        quantity : 5,
+        category : 'mobile',
+        imageUrl : 'https://m.media-amazon.com/images/I/61SKi94cImL._SL1500_.jpg',
+    },
+    {
+        _id : 2,
+        name : 'Apple iPad',
+        description : 'Apple iPad (10th Generation): with A14 Bionic chip, 27.69 cm (10.9″) Liquid Retina Display, 256GB, Wi-Fi 6, 12MP front/12MP Back Camera, Touch ID, All-Day Battery Life Blue',
+        price : 38999,
+        quantity : 5,
+        category : 'tablet',
+        imageUrl : 'https://m.media-amazon.com/images/I/61uA2UVnYWL._SL1500_.jpg',
+    },
+    {
+        _id : 3,
+        name : 'AirPods Pro',
+        description : 'Apple AirPods Pro (2nd Generation) with MagSafe Case',
+        price : 5999,
+        quantity : 5,
+        category : 'headphones' ,
+        imageUrl : 'https://m.media-amazon.com/images/I/61oCISLE+PL._SL1500_.jpg',
+    },
+    {
+        _id : 4,
+        name : 'MacBook Air',
+        description : 'Apple MacBook Air Laptop with M2 chip: 34.46 cm (13.6-inch) Liquid Retina Display, 8GB RAM, 512GB SSD Storage, Backlit Keyboard, 1080p FaceTime HD Camera. Works with iPhone/iPad; Space Grey',
+        price : 99999 ,
+        quantity : 0,
+        category : 'laptop',
+        imageUrl : 'https://m.media-amazon.com/images/I/61opqQEBUxL._SL1500_.jpg',
+    },
+]
