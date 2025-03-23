@@ -1,23 +1,47 @@
 import { View, Text, TextInput, TouchableOpacity , StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputBox from '../component/Form/InputBox'
 import { useNavigation } from '@react-navigation/native';
 import Register from './Register';
 
+// redux hooks
+import { useDispatch, useSelector } from 'react-redux'; 
+import { login } from '../Redux/features/UserAction';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-
+   
+  //hooks
+  const dispatch = useDispatch();
+  //global state
+  const {loading, error, message} = useSelector(state => state.user);
+ 
+  
   //handle login
   const handleLogin = () =>{
-     if(!email || !password){
-       return alert("Please Enter Email and Password");
-     }
-     alert("Login Successfully");
-     navigation.navigate("home")
+    if(!email || !password){
+      return alert("Please Enter Email and Password");
+    }
+    dispatch(login(email, password));
   }
+
+  // life cycle
+  useEffect(() =>{
+    console.log("message :" , message);
+    
+    if(error){
+      alert(error);
+      dispatch({type: 'clearError'})
+    } 
+    if(message){
+      alert(message);
+      dispatch({type:'clearMessage'})
+      navigation.navigate("home")
+    } 
+  },[error,message, dispatch])
+
   return (
     <View style = {styles.container}>
 
