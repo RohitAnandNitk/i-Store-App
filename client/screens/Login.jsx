@@ -7,6 +7,7 @@ import Register from './Register';
 // redux hooks
 import { useDispatch, useSelector } from 'react-redux'; 
 import { login } from '../Redux/features/UserAction';
+import { useReduxStateHook } from '../Hooks/customHook';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,9 +16,10 @@ const Login = () => {
    
   //hooks
   const dispatch = useDispatch();
-  //global state
-  const {loading, error, message} = useSelector(state => state.user);
- 
+
+  //global state --> now we will use custom hooks
+  // const {loading, error, message} = useSelector(state => state.user);
+  const loading = useReduxStateHook(navigation, "home");
   
   //handle login
   const handleLogin = () =>{
@@ -27,20 +29,20 @@ const Login = () => {
     dispatch(login(email, password));
   }
 
-  // life cycle
-  useEffect(() =>{
-    console.log("message :" , message);
+  // life cycle --> we are doing this in customHook.js
+  // useEffect(() =>{
+  //   console.log("message :" , message);
     
-    if(error){
-      alert(error);
-      dispatch({type: 'clearError'})
-    } 
-    if(message){
-      alert(message);
-      dispatch({type:'clearMessage'})
-      navigation.navigate("home")
-    } 
-  },[error,message, dispatch])
+  //   if(error){
+  //     alert(error);
+  //     dispatch({type: 'clearError'})
+  //   } 
+  //   if(message){
+  //     alert(message);
+  //     dispatch({type:'clearMessage'})
+  //     navigation.navigate("home")
+  //   } 
+  // },[error,message, dispatch])
 
   return (
     <View style = {styles.container}>
@@ -48,6 +50,7 @@ const Login = () => {
       <Text style = {styles.heading}>Welcome To {" "}
                   <Text style = {styles.appName} >i-Store</Text></Text>
 
+      {/* {loading && <Text>Loading...</Text>} */}
       <InputBox 
        placeholder={"Enter Your Email"} 
        autoComplete={'email'}

@@ -4,14 +4,15 @@ import Layout from '../Layouts/Layout'
 import { useNavigation } from '@react-navigation/native'
 import { userData } from '../Data/UserData'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useReduxStateHook } from '../Hooks/customHook'
+import { useDispatch } from 'react-redux'
+import { logout } from '../Redux/features/UserAction'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Profile = () => {
   const navigation = useNavigation();
-  // handle logout
-  const handleLogout = () => {
-      alert("Logout Successfully");
-      navigation.navigate('login');
-  }
+  const dispatch = useDispatch();
+  const loading = useReduxStateHook(navigation, "login");
   return (
     <Layout>
         <View style = { styles.container}>
@@ -47,7 +48,11 @@ const Profile = () => {
                </TouchableOpacity>
                
                <TouchableOpacity style  ={styles.othersBtn}
-               onPress={() => navigation.navigate('login')}>
+               onPress={ async () => {dispatch(logout());
+                  await AsyncStorage.removeItem("@token");
+               }}
+              //  onPress={navigation.navigate("login")}
+               >
                      <Icon name='sign-out' style = {styles.icon} ></Icon>
                       <Text style = {styles.othersBtnText}>Logout</Text>
                </TouchableOpacity>

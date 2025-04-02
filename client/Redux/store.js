@@ -8,4 +8,5 @@ export default configureStore({
 });
 
 // server URL
-export const serverURL = "http://10.50.33.168:8080";
+// export const serverURL = "http://172.16.0.2:8080";
+export const serverURL = "https://i-store-app.onrender.com";
